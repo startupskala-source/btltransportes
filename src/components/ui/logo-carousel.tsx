@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useIsMobile } from "@/hooks/use-mobile";
+
 
 
 export type CarouselLogo = {
@@ -58,7 +58,7 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(({ logos, index, curren
 
   return (
     <motion.div
-      className="relative h-14 w-24 overflow-hidden md:h-20 md:w-36"
+      className="relative h-12 w-16 overflow-hidden sm:h-14 sm:w-24 md:h-20 md:w-36"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -112,8 +112,8 @@ interface LogoCarouselProps {
 }
 
 export function LogoCarousel({ columnCount = 4, logos }: LogoCarouselProps) {
-  const isMobile = useIsMobile();
-  const effectiveColumnCount = isMobile ? Math.min(2, columnCount) : columnCount;
+  const effectiveColumnCount = columnCount;
+
   const [logoSets, setLogoSets] = useState<CarouselLogo[][]>([]);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -133,7 +133,7 @@ export function LogoCarousel({ columnCount = 4, logos }: LogoCarouselProps) {
   }, [updateTime, logoSets.length]);
 
   return (
-    <div className="flex items-center justify-center gap-6 md:gap-10">
+    <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10">
       {logoSets.map((cols, index) => (
         <LogoColumn key={index} logos={cols} index={index} currentTime={currentTime} />
       ))}
