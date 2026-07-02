@@ -23,13 +23,18 @@ const distributeLogos = (allLogos: CarouselLogo[], columnCount: number): Carouse
     columns[index % columnCount].push(logo);
   });
   const maxLength = Math.max(...columns.map((c) => c.length));
-  // Pad shorter columns by continuing the shuffled sequence, so no logo repeats
-  // in adjacent columns at the same cycle index (avoids visible duplicates like
-  // two Philips side by side).
-  let padCursor = shuffled.length;
+  // Pad shorter columns without repeating a logo inside the same column.
+  let padCursor = 0;
   columns.forEach((col) => {
     while (col.length < maxLength) {
-      col.push(shuffled[padCursor % shuffled.length]);
+      let candidate = shuffled[padCursor % shuffled.length];
+      let attempts = 0;
+      while (col.some((l) => l.id === candidate.id) && attempts < shuffled.length) {
+        padCursor += 1;
+        candidate = shuffled[padCursor % shuffled.length];
+        attempts += 1;
+      }
+      col.push(candidate);
       padCursor += 1;
     }
   });
