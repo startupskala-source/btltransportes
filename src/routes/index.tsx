@@ -2,7 +2,9 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SatelliteBrazilMap } from "@/components/ui/satellite-brazil-map";
 
-import warehouse from "@/assets/warehouse-premium.jpg";
+import warehouseAsset from "@/assets/diferenciais-warehouse.png.asset.json";
+const warehouse = warehouseAsset.url;
+
 import heroPoster from "@/assets/hero-truck.jpg";
 import heroVideoWebm from "@/assets/hero-truck.webm";
 import heroVideoMobileWebm from "@/assets/hero-truck-mobile.webm";
