@@ -2,8 +2,8 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SatelliteBrazilMap } from "@/components/ui/satellite-brazil-map";
 
-import warehouseAsset from "@/assets/diferenciais-warehouse.jpg.asset.json";
-const warehouse = warehouseAsset.url;
+import { diferenciaisWarehouseImage } from "@/assets/diferenciais-warehouse-base64";
+const warehouse = diferenciaisWarehouseImage;
 
 
 import heroPoster from "@/assets/hero-truck.jpg";
