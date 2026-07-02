@@ -4,8 +4,9 @@ import { SatelliteBrazilMap } from "@/components/ui/satellite-brazil-map";
 import { SeamlessVideo } from "@/components/ui/seamless-video";
 
 import warehouse from "@/assets/warehouse-premium.jpg";
-import heroVideo from "@/assets/hero-truck.mp4";
-import heroVideoMobile from "@/assets/hero-truck-mobile.mp4";
+import heroVideoAsset from "@/assets/hero-truck-new.mp4.asset.json";
+const heroVideo = heroVideoAsset.url;
+const heroVideoMobile = heroVideoAsset.url;
 import btlLogo from "@/assets/btl-logo-new.png";
 import btlFooterLogo from "@/assets/btl-footer-logo.png";
 
