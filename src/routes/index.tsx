@@ -22,7 +22,7 @@ import zemaLogo from "@/assets/zema.svg";
 import mateusLogo from "@/assets/mateus.png";
 import lilianiLogo from "@/assets/liliani.png";
 import { martinelloLogo } from "@/lib/martinello-logo";
-import grupoAtanAsset from "@/assets/grupo-atan.png.asset.json";
+import { grupoAtanLogo } from "@/lib/grupo-atan-logo";
 
 import { LogoCarousel } from "@/components/ui/logo-carousel";
 import { ContactCard } from "@/components/ui/contact-card";
@@ -213,7 +213,7 @@ function Partners() {
     { id: 1, name: "Whirlpool", src: whirlpoolLogo },
     { id: 2, name: "Martinello", src: martinelloLogo },
     { id: 3, name: "Philips", src: philipsLogo },
-    { id: 4, name: "Grupo Atan", src: grupoAtanAsset.url },
+    { id: 4, name: "Grupo Atan", src: grupoAtanLogo },
     { id: 5, name: "Gelopar", src: geloparLogo },
     { id: 6, name: "Mueller", src: muellerLogo },
     { id: 7, name: "Oster", src: osterLogo },
