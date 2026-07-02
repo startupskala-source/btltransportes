@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SatelliteBrazilMap } from "@/components/ui/satellite-brazil-map";
-import { SeamlessVideo } from "@/components/ui/seamless-video";
 
 import warehouse from "@/assets/warehouse-premium.jpg";
-import heroVideoAsset from "@/assets/hero-truck-new.mp4.asset.json";
-const heroVideo = heroVideoAsset.url;
-const heroVideoMobile = heroVideoAsset.url;
+import heroPoster from "@/assets/hero-truck.jpg";
+import heroVideo from "@/assets/hero-truck.mp4";
+import heroVideoMobile from "@/assets/hero-truck-mobile.mp4";
 import btlLogo from "@/assets/btl-logo-new.png";
 import btlFooterLogo from "@/assets/btl-footer-logo.png";
 
@@ -103,27 +102,46 @@ function Nav() {
   );
 }
 
-function Hero() {
+function BackgroundVideo({ className = "" }: { className?: string }) {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <section
-      id="top"
-      className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden"
-    >
-      {/* full-bleed background video — native loop */}
+    <>
+      <img
+        src={heroPoster}
+        alt="Caminhão BTL em rota"
+        className={`absolute inset-0 h-full w-full object-cover ${className}`}
+        loading="eager"
+      />
       <video
-        src={heroVideo}
         autoPlay
         muted
         loop
         playsInline
-        preload="auto"
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-      />
+        preload="metadata"
+        poster={heroPoster}
+        onCanPlay={() => setLoaded(true)}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"} ${className}`}
+      >
+        <source src={heroVideoMobile} type="video/mp4" media="(max-width: 767px)" />
+        <source src={heroVideo} type="video/mp4" />
+      </video>
+    </>
+  );
+}
+
+function Hero() {
+  return (
+    <section
+      id="top"
+      className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-black"
+    >
+      <BackgroundVideo className="z-0" />
 
       {/* readability overlay */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
 
-      <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-6 pt-32 pb-24 text-center md:pt-40 md:pb-32">
+      <div className="relative z-20 mx-auto flex w-full max-w-5xl flex-col items-center px-6 pt-32 pb-24 text-center md:pt-40 md:pb-32">
         <TextEffect
           as="h1"
           per="word"
@@ -668,22 +686,13 @@ function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="relative isolate overflow-hidden border-t border-white/10 bg-black text-white">
-      {/* background video — seamless infinite loop */}
-      <video
-        src={heroVideo}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-      />
+      <BackgroundVideo className="z-0" />
       {/* dark overlay for readability */}
-      <div className="absolute inset-0 -z-10 bg-black/75" />
+      <div className="absolute inset-0 z-10 bg-black/75" />
       {/* glass marsala line at top */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
 
-      <div className="relative mx-auto grid max-w-7xl gap-8 px-6 py-10 md:gap-12 md:py-16 md:grid-cols-4">
+      <div className="relative z-20 mx-auto grid max-w-7xl gap-8 px-6 py-10 md:gap-12 md:py-16 md:grid-cols-4">
         <div className="md:col-span-1">
           <div className="flex items-center gap-4">
             <img src={btlFooterLogo} alt="BTL Transportes" className="h-20 w-20 object-contain md:h-24 md:w-24" loading="lazy" />
@@ -724,7 +733,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="relative border-t border-white/10 backdrop-blur-sm">
+      <div className="relative z-20 border-t border-white/10 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-4 text-xs text-white/70 md:flex-row md:py-6">
           <p>© {year} BTL Transportes e Armazenagem. Todos os direitos reservados.</p>
           <p className="uppercase tracking-[0.25em]">CNPJ 34.904.898/0003-06 · ANTT · Carga Segurada</p>
