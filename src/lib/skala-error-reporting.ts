@@ -1,24 +1,25 @@
-type LovableErrorOptions = {
+type SkalaErrorOptions = {
   mechanism?: "manual" | "onerror" | "unhandledrejection" | "react_error_boundary";
   handled?: boolean;
   severity?: "error" | "warning" | "info";
 };
 
-type LovableEvents = {
+type SkalaEvents = {
   captureException?: (
     error: unknown,
     context?: Record<string, unknown>,
-    options?: LovableErrorOptions,
+    options?: SkalaErrorOptions,
   ) => void;
 };
 
 declare global {
   interface Window {
-    __lovableEvents?: LovableEvents;
+    // Platform-injected global — do not rename.
+    __lovableEvents?: SkalaEvents;
   }
 }
 
-export function reportLovableError(error: unknown, context: Record<string, unknown> = {}) {
+export function reportSkalaError(error: unknown, context: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
   window.__lovableEvents?.captureException?.(
     error,
