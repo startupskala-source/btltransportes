@@ -112,8 +112,8 @@ interface LogoCarouselProps {
 }
 
 export function LogoCarousel({ columnCount = 4, logos }: LogoCarouselProps) {
-  const isMobile = useIsMobile();
-  const effectiveColumnCount = isMobile ? Math.min(2, columnCount) : columnCount;
+  const effectiveColumnCount = columnCount;
+
   const [logoSets, setLogoSets] = useState<CarouselLogo[][]>([]);
   const [currentTime, setCurrentTime] = useState(0);
 
