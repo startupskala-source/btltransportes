@@ -269,11 +269,6 @@ function Services() {
       desc: "Geladeiras, fogões, máquinas de lavar, freezers. Manuseio especializado e embalagens reforçadas para zero avaria.",
     },
     {
-      icon: ShoppingBag,
-      title: "Bazar & Utilidades",
-      desc: "Utensílios, organizadores, decoração e itens de papelaria. Cargas fracionadas com agilidade.",
-    },
-    {
       icon: Boxes,
       title: "Armazenagem",
       desc: "Galpões próprios com controle de inventário, picking e cross-docking para distribuição imediata.",
