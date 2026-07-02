@@ -33,7 +33,7 @@ export function LogoCloud({
       {...props}
     >
       <div
-        className="flex w-max animate-[logo-marquee_var(--marquee-duration)_linear_infinite] group-hover:[animation-play-state:paused]"
+        className="flex w-max animate-[marquee_var(--marquee-duration)_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:animate-none"
         style={
           {
             ["--marquee-duration" as string]: `${speed}s`,
