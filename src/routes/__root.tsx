@@ -10,7 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { reportSkalaError } from "../lib/skala-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -38,7 +38,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    reportSkalaError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
   return (
@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Transportadora especializada em linha branca e bazar. Frota própria, rastreamento e cobertura nacional." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@Skala" },
       { name: "twitter:title", content: "BTL Transportes — Linha branca e bazar com segurança" },
       { name: "twitter:description", content: "Transportadora especializada em linha branca e bazar. Frota própria, rastreamento e cobertura nacional." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5e8f361-ca95-4eb2-9c99-4a167ed89173/id-preview-c710ad9c--f121d32a-e98e-4f0e-a0f3-a1997ff07689.lovable.app-1782211289825.png" },
