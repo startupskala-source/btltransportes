@@ -21,7 +21,7 @@ import colormaqLogo from "@/assets/colormaq.png";
 import zemaLogo from "@/assets/zema.svg";
 import mateusLogo from "@/assets/mateus.png";
 import lilianiLogo from "@/assets/liliani.png";
-import martinelloAsset from "@/assets/martinello.png.asset.json";
+import { martinelloLogo } from "@/lib/martinello-logo";
 
 import { LogoCarousel } from "@/components/ui/logo-carousel";
 import { ContactCard } from "@/components/ui/contact-card";
@@ -210,7 +210,7 @@ function Marquee() {
 function Partners() {
   const logos = [
     { id: 1, name: "Whirlpool", src: whirlpoolLogo },
-    { id: 2, name: "Martinello", src: martinelloAsset.url },
+    { id: 2, name: "Martinello", src: martinelloLogo },
     { id: 3, name: "Philips", src: philipsLogo },
     { id: 4, name: "Colormaq", src: colormaqLogo },
     { id: 5, name: "Gelopar", src: geloparLogo },
