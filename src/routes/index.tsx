@@ -22,6 +22,7 @@ import zemaLogo from "@/assets/zema.svg";
 import mateusLogo from "@/assets/mateus.png";
 import lilianiLogo from "@/assets/liliani.png";
 import { martinelloLogo } from "@/lib/martinello-logo";
+import grupoAtanAsset from "@/assets/grupo-atan.png.asset.json";
 
 import { LogoCarousel } from "@/components/ui/logo-carousel";
 import { ContactCard } from "@/components/ui/contact-card";
@@ -240,6 +241,7 @@ function Clients() {
     { id: 2, name: "Grupo Mateus", src: mateusLogo },
     { id: 3, name: "Magazine Liliani", src: lilianiLogo },
     { id: 4, name: "Electrolux", src: electroluxLogo },
+    { id: 5, name: "Grupo Atan", src: grupoAtanAsset.url },
   ];
   return (
     <section className="relative isolate overflow-hidden bg-white py-16 md:py-20">
