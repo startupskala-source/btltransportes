@@ -313,7 +313,7 @@ function Services() {
 function WhyUs() {
   const items = [
     { icon: ShieldCheck, title: "Carga 100% segurada", desc: "Cobertura completa do embarque à entrega." },
-    { icon: PackageCheck, title: "Zero avaria", desc: "Embalagens, amarração e manuseio especializado." },
+    
     { icon: Clock, title: "Prazo cumprido", desc: "98% das entregas dentro do prazo combinado." },
     { icon: MapPin, title: "Rastreio em tempo real", desc: "Acompanhe cada quilômetro da sua carga." },
   ];
