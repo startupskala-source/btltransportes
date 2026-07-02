@@ -269,11 +269,6 @@ function Services() {
       desc: "Geladeiras, fogões, máquinas de lavar, freezers. Manuseio especializado e embalagens reforçadas para zero avaria.",
     },
     {
-      icon: ShoppingBag,
-      title: "Bazar & Utilidades",
-      desc: "Utensílios, organizadores, decoração e itens de papelaria. Cargas fracionadas com agilidade.",
-    },
-    {
       icon: Boxes,
       title: "Armazenagem",
       desc: "Galpões próprios com controle de inventário, picking e cross-docking para distribuição imediata.",
@@ -662,7 +657,7 @@ function Footer() {
           <h4 className="mb-3 inline-block border-b border-white pb-1 text-sm font-bold uppercase tracking-[0.2em] text-white md:mb-4">Serviços</h4>
           <ul className="space-y-2 text-sm text-white">
             <li><a href="#servicos" className="transition hover:text-primary">Linha Branca</a></li>
-            <li><a href="#servicos" className="transition hover:text-primary">Bazar & Utilidades</a></li>
+            
             <li><a href="#servicos" className="transition hover:text-primary">Armazenagem</a></li>
             <li><a href="#servicos" className="transition hover:text-primary">Distribuição Nacional</a></li>
           </ul>
