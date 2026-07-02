@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 
@@ -63,7 +63,7 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(({ logos, index, curren
       animate={{ opacity: 1, y: 0 }}
     >
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence initial={false} mode="sync">
         <motion.div
           key={`${current.id}-${currentIndex}`}
           className="absolute inset-0 flex items-center justify-center"
@@ -91,7 +91,9 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(({ logos, index, curren
           <img
             src={current.src}
             alt={current.name}
-            loading="lazy"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
             draggable={false}
             className="max-h-full max-w-full object-contain"
           />
@@ -110,23 +112,57 @@ interface LogoCarouselProps {
 export function LogoCarousel({ columnCount = 4, logos }: LogoCarouselProps) {
   const effectiveColumnCount = columnCount;
 
-  const [logoSets, setLogoSets] = useState<CarouselLogo[][]>([]);
+  const logoSets = useMemo(
+    () => distributeLogos(logos, effectiveColumnCount),
+    [logos, effectiveColumnCount],
+  );
   const [currentTime, setCurrentTime] = useState(0);
+  const preloadRunRef = useRef(0);
+  const [isReady, setIsReady] = useState(false);
 
   const updateTime = useCallback(() => {
-    setCurrentTime((prev) => prev + 100);
+    setCurrentTime((prev) => prev + 50);
   }, []);
 
   useEffect(() => {
-    setLogoSets(distributeLogos(logos, effectiveColumnCount));
+    const runId = preloadRunRef.current + 1;
+    preloadRunRef.current = runId;
+    setIsReady(false);
     setCurrentTime(0);
-  }, [logos, effectiveColumnCount]);
+
+    const uniqueSources = Array.from(new Set(logos.map((logo) => logo.src)));
+
+    Promise.all(
+      uniqueSources.map(
+        (src) =>
+          new Promise<void>((resolve) => {
+            const image = new Image();
+            image.onload = () => resolve();
+            image.onerror = () => resolve();
+            image.src = src;
+
+            if (image.complete) {
+              resolve();
+              return;
+            }
+
+            if (image.decode) {
+              image.decode().then(resolve).catch(resolve);
+            }
+          }),
+      ),
+    ).then(() => {
+      if (preloadRunRef.current === runId) {
+        setIsReady(true);
+      }
+    });
+  }, [logos]);
 
   useEffect(() => {
-    if (logoSets.length === 0) return;
-    const id = setInterval(updateTime, 100);
+    if (!isReady || logoSets.length === 0) return;
+    const id = setInterval(updateTime, 50);
     return () => clearInterval(id);
-  }, [updateTime, logoSets.length]);
+  }, [isReady, updateTime, logoSets.length]);
 
   return (
     <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10">
