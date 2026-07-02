@@ -51,9 +51,9 @@ interface LogoColumnProps {
 
 const LogoColumn: React.FC<LogoColumnProps> = React.memo(({ logos, index, currentTime }) => {
   const cycleInterval = 2000;
-  const columnDelay = index * 200;
-  const adjustedTime = (currentTime + columnDelay) % (cycleInterval * logos.length);
+  const adjustedTime = currentTime % (cycleInterval * logos.length);
   const currentIndex = Math.floor(adjustedTime / cycleInterval);
+
   const current = useMemo(() => logos[currentIndex], [logos, currentIndex]);
 
   return (
