@@ -213,7 +213,7 @@ function Partners() {
     { id: 1, name: "Whirlpool", src: whirlpoolLogo },
     { id: 2, name: "Martinello", src: martinelloLogo },
     { id: 3, name: "Philips", src: philipsLogo },
-    { id: 4, name: "Grupo Atan", src: grupoAtanLogo },
+    { id: 4, name: "Electrolux", src: electroluxLogo },
     { id: 5, name: "Gelopar", src: geloparLogo },
     { id: 6, name: "Mueller", src: muellerLogo },
     { id: 7, name: "Oster", src: osterLogo },
@@ -240,7 +240,7 @@ function Clients() {
     { id: 1, name: "Zema", src: zemaLogo },
     { id: 2, name: "Grupo Mateus", src: mateusLogo },
     { id: 3, name: "Magazine Liliani", src: lilianiLogo },
-    { id: 4, name: "Electrolux", src: electroluxLogo },
+    { id: 4, name: "Grupo Atan", src: grupoAtanLogo },
     { id: 5, name: "Colormaq", src: colormaqLogo },
   ];
   return (
