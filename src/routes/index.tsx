@@ -109,9 +109,17 @@ function Hero() {
       id="top"
       className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden"
     >
-      {/* full-bleed background video — seamless infinite loop */}
-      <SeamlessVideo src={heroVideoMobile} className="-z-20 md:hidden" />
-      <SeamlessVideo src={heroVideo} className="-z-20 hidden md:block" />
+      {/* full-bleed background video — native loop */}
+      <video
+        src={heroVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
+
       {/* readability overlay */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
 
