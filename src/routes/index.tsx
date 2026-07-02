@@ -21,6 +21,7 @@ import colormaqLogo from "@/assets/colormaq.png";
 import zemaLogo from "@/assets/zema.svg";
 import mateusLogo from "@/assets/mateus.png";
 import lilianiLogo from "@/assets/liliani.png";
+import logoNovo from "@/assets/logo-novo.svg";
 import { martinelloLogo } from "@/lib/martinello-logo";
 import { grupoAtanLogo } from "@/lib/grupo-atan-logo";
 
@@ -241,6 +242,7 @@ function Clients() {
     { id: 3, name: "Magazine Liliani", src: lilianiLogo },
     { id: 4, name: "Grupo Atan", src: grupoAtanLogo },
     { id: 5, name: "Colormaq", src: colormaqLogo },
+    { id: 6, name: "Sancol", src: logoNovo },
   ];
   return (
     <section className="relative isolate overflow-hidden bg-white py-16 md:py-20">
