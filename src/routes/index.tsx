@@ -211,7 +211,6 @@ function Marquee() {
 function Partners() {
   const logos = [
     { id: 1, name: "Whirlpool", src: whirlpoolLogo },
-    { id: 2, name: "Martinello", src: martinelloLogo },
     { id: 3, name: "Philips", src: philipsLogo },
     { id: 4, name: "Electrolux", src: electroluxLogo },
     { id: 5, name: "Gelopar", src: geloparLogo },
