@@ -510,17 +510,35 @@ function Cta() {
           onSubmit={async (e) => {
             e.preventDefault();
             const form = e.currentTarget as HTMLFormElement;
-            const data = new FormData(form);
-            data.append("access_key", "15665dfd-0a5d-465b-abbd-97911e59e3d0");
-            data.append("subject", `Contato BTL — ${data.get("assunto") || "Sem assunto"}`);
-            data.append("from_name", "Site BTL Transportes");
+            const raw = new FormData(form);
+
+            const nome = String(raw.get("nome") || "").trim();
+            const empresa = String(raw.get("empresa") || "").trim();
+            const email = String(raw.get("email") || "").trim();
+            const whatsapp = String(raw.get("whatsapp") || "").trim();
+            const assunto = String(raw.get("assunto") || "").trim();
+            const mensagem = String(raw.get("mensagem") || "").trim();
+
+            const payload = new FormData();
+            payload.append("access_key", "15665dfd-0a5d-465b-abbd-97911e59e3d0");
+            payload.append("subject", `📩 Novo contato BTL — ${assunto || "Sem assunto"}`);
+            payload.append("from_name", `BTL Transportes • ${nome || "Novo contato"}`);
+            if (email) payload.append("replyto", email);
+            payload.append("botcheck", String(raw.get("botcheck") || ""));
+
+            payload.append("👤 Nome", nome || "—");
+            payload.append("🏢 Empresa", empresa || "—");
+            payload.append("✉️ E-mail", email || "—");
+            payload.append("📱 WhatsApp", whatsapp || "—");
+            payload.append("🏷️ Assunto", assunto || "—");
+            payload.append("💬 Mensagem", mensagem || "—");
 
             setStatus("sending");
             setErrorMsg("");
             try {
               const res = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
-                body: data,
+                body: payload,
               });
               const json = await res.json();
               if (json.success) {
