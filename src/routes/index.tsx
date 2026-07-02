@@ -730,33 +730,11 @@ function BrazilFiliais() {
   const allPins = [
     { city: "Jundiaí", uf: "SP", lat: -23.1864, lng: -46.8842, hq: true },
     { city: "Joinville", uf: "SC", lat: -26.3044, lng: -48.8456 },
+    { city: "São Marcos", uf: "RS", lat: -28.9706, lng: -51.0669 },
     { city: "Camaçari", uf: "BA", lat: -12.6975, lng: -38.3242 },
-    { city: "Alfredo Chaves", uf: "ES", lat: -20.5425, lng: -40.8237 },
-    { city: "Ananindeua", uf: "PA", lat: -1.3539, lng: -48.3028 },
-    { city: "Marabá", uf: "PA", lat: -5.3688, lng: -49.1177 },
-    { city: "Porto Nacional", uf: "TO", lat: -10.7014, lng: -48.4172 },
-    { city: "Guaraí", uf: "TO", lat: -8.8361, lng: -48.5108 },
-    { city: "Gurupi", uf: "TO", lat: -11.7292, lng: -49.0680 },
-    { city: "Xinguara", uf: "PA", lat: -7.0954, lng: -49.9486 },
-    { city: "São Geraldo do Araguaia", uf: "PA", lat: -7.3508, lng: -48.5542 },
-    { city: "Guajará-Mirim", uf: "RO", lat: -10.7828, lng: -65.3394 },
-    { city: "Cabo de Santo Agostinho", uf: "PE", lat: -8.2861, lng: -35.0320 },
-    { city: "Lucas do Rio Verde", uf: "MT", lat: -13.0731, lng: -55.9150 },
-    { city: "Araxá", uf: "MG", lat: -19.5932, lng: -46.9437 },
-    { city: "Barreiras", uf: "BA", lat: -12.1439, lng: -44.9968 },
-    { city: "Luís Eduardo Magalhães", uf: "BA", lat: -12.0926, lng: -45.9054 },
-    { city: "Imperatriz", uf: "MA", lat: -5.4913, lng: -47.4925 },
-    { city: "São Luís", uf: "MA", lat: -2.5297, lng: -44.3028 },
-    { city: "Teresina", uf: "PI", lat: -5.0892, lng: -42.8016 },
-    { city: "São José de Ribamar", uf: "MA", lat: -2.5617, lng: -44.0572 },
-    { city: "Presidente Dutra", uf: "MA", lat: -5.2900, lng: -44.4931 },
-    { city: "Campina Grande", uf: "PB", lat: -7.2307, lng: -35.8817 },
-    { city: "Feira de Santana", uf: "BA", lat: -12.2664, lng: -38.9663 },
-    { city: "Araguatins", uf: "TO", lat: -5.6505, lng: -47.7900 },
-    { city: "Araguaína", uf: "TO", lat: -7.1911, lng: -48.2076 },
-    { city: "Paraíso do Tocantins", uf: "TO", lat: -10.1736, lng: -48.8819 },
-    { city: "Colinas do Tocantins", uf: "TO", lat: -8.0575, lng: -46.4265 },
+    { city: "Alfredo Chaves", uf: "ES", lat: -20.6367, lng: -40.7508 },
   ];
+
 
   // Keep only one pin per state (prioritize HQ, then first in list)
   const seen = new Set<string>();
