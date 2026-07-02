@@ -728,7 +728,7 @@ function Footer() {
           <h4 className="mb-3 inline-block border-b border-white pb-1 text-sm font-bold uppercase tracking-[0.2em] text-white md:mb-4">Fale com a gente</h4>
           <ul className="space-y-3 text-sm text-white">
             <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-white" /> (11) 4002-8922</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-white" /> startupskala@gmail.com</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-white" /> contato@btltransportes.com.br</li>
             <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-white" /> Atendimento em todo o Brasil</li>
           </ul>
         </div>
