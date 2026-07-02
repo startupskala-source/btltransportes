@@ -56,7 +56,7 @@ export function LogoCloud({
           <ul
             key={copy}
             aria-hidden={copy === 1}
-            className="flex shrink-0 items-center gap-10 sm:gap-14 md:gap-20"
+            className="flex shrink-0 items-center"
           >
             {logos.map((logo, i) => (
               <li
