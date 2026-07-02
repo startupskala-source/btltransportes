@@ -217,6 +217,7 @@ function Partners() {
     { id: 5, name: "Gelopar", src: geloparLogo },
     { id: 6, name: "Mueller", src: muellerLogo },
     { id: 7, name: "Oster", src: osterLogo },
+    { id: 8, name: "Sancol", src: logoNovo },
   ];
   return (
     <section className="relative isolate overflow-hidden bg-white py-16 md:py-20">
@@ -242,7 +243,6 @@ function Clients() {
     { id: 3, name: "Magazine Liliani", src: lilianiLogo },
     { id: 4, name: "Grupo Atan", src: grupoAtanLogo },
     { id: 5, name: "Colormaq", src: colormaqLogo },
-    { id: 6, name: "Sancol", src: logoNovo },
   ];
   return (
     <section className="relative isolate overflow-hidden bg-white py-16 md:py-20">
