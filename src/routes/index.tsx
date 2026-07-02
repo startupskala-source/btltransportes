@@ -21,7 +21,7 @@ import colormaqLogo from "@/assets/colormaq.png";
 import zemaLogo from "@/assets/zema.svg";
 import mateusLogo from "@/assets/mateus.png";
 import lilianiLogo from "@/assets/liliani.png";
-import clienteExtraLogo from "@/assets/cliente-extra.svg";
+import martinelloAsset from "@/assets/martinello.png.asset.json";
 
 import { LogoCarousel } from "@/components/ui/logo-carousel";
 import { ContactCard } from "@/components/ui/contact-card";
