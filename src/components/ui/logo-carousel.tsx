@@ -133,7 +133,7 @@ export function LogoCarousel({ columnCount = 4, logos }: LogoCarouselProps) {
   }, [updateTime, logoSets.length]);
 
   return (
-    <div className="flex items-center justify-center gap-6 md:gap-10">
+    <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10">
       {logoSets.map((cols, index) => (
         <LogoColumn key={index} logos={cols} index={index} currentTime={currentTime} />
       ))}
