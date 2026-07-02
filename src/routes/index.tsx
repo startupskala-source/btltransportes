@@ -23,7 +23,7 @@ import mateusLogo from "@/assets/mateus.png";
 import lilianiLogo from "@/assets/liliani.png";
 import clienteExtraLogo from "@/assets/cliente-extra.svg";
 
-import { LogoCloud } from "@/components/ui/logo-cloud-4";
+import { LogoCarousel } from "@/components/ui/logo-carousel";
 import { ContactCard } from "@/components/ui/contact-card";
 
 import { TextEffect } from "@/components/ui/text-effect";
@@ -209,28 +209,14 @@ function Marquee() {
 
 function Partners() {
   const logos = [
-    { src: whirlpoolLogo, alt: "Whirlpool" },
-    { src: electroluxLogo, alt: "Electrolux" },
-    { src: philipsLogo, alt: "Philips" },
-    
-    { src: colormaqLogo, alt: "Colormaq" },
-    { src: geloparLogo, alt: "Gelopar" },
-    { src: muellerLogo, alt: "Mueller" },
-    { src: osterLogo, alt: "Oster" },
+    { id: 1, name: "Whirlpool", src: whirlpoolLogo },
+    { id: 2, name: "Electrolux", src: electroluxLogo },
+    { id: 3, name: "Philips", src: philipsLogo },
+    { id: 4, name: "Colormaq", src: colormaqLogo },
+    { id: 5, name: "Gelopar", src: geloparLogo },
+    { id: 6, name: "Mueller", src: muellerLogo },
+    { id: 7, name: "Oster", src: osterLogo },
   ];
-  const Track = () => (
-    <div className="flex shrink-0 items-center gap-8 pr-8 md:gap-24 md:pr-24">
-      {logos.map((logo, i) => (
-        <img
-          key={`${logo.alt}-${i}`}
-          src={logo.src}
-          alt={logo.alt}
-          className="h-8 w-auto shrink-0 object-contain transition hover:scale-105 md:h-14"
-          loading="lazy"
-        />
-      ))}
-    </div>
-  );
   return (
     <section className="relative isolate overflow-hidden bg-white py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
@@ -242,17 +228,7 @@ function Partners() {
             Parceiros de estrada
           </h2>
         </div>
-      </div>
-
-      {/* infinite marquee */}
-      <div className="group relative w-full overflow-hidden">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent md:w-24" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent md:w-24" />
-
-        <div className="flex w-max animate-marquee [will-change:transform] [transform:translateZ(0)] group-hover:[animation-play-state:paused]">
-          <Track />
-          <Track />
-        </div>
+        <LogoCarousel columnCount={4} logos={logos} />
       </div>
     </section>
   );
