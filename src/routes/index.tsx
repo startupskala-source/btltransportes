@@ -568,8 +568,8 @@ function Cta() {
                       defaultChecked={opt.value === "frota"}
                       className="peer sr-only"
                     />
-                    <span className="relative flex h-5 w-5 items-center justify-center rounded-full border-2 border-primary/40 transition-all duration-300 group-hover:border-primary group-hover:scale-110 peer-checked:border-primary peer-checked:scale-105">
-                      <span className="h-2.5 w-2.5 rounded-full bg-primary opacity-0 transition-all duration-300 peer-checked:opacity-100 peer-checked:scale-100 scale-0" />
+                    <span className="relative flex h-5 w-5 items-center justify-center rounded-full border-2 border-primary/40 transition-all duration-300 group-hover:border-primary group-hover:scale-110 peer-checked:border-primary peer-checked:bg-primary peer-checked:scale-105">
+                      <span className="h-2 w-2 rounded-full bg-white opacity-0 transition-opacity duration-300 peer-checked:opacity-100" />
                     </span>
                     <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground group-hover:translate-x-1 peer-checked:text-foreground peer-checked:font-medium peer-checked:translate-x-1">
                       {opt.label}
