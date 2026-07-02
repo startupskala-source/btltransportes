@@ -295,7 +295,7 @@ function Services() {
           Cada categoria tem suas exigências. Treinamos nossa equipe e equipamos nossa frota para cada uma delas.
         </p>
       </div>
-      <div className="grid gap-px overflow-hidden rounded-sm bg-border md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-px overflow-hidden rounded-sm bg-border md:grid-cols-2 lg:grid-cols-3">
         {services.map((s) => (
           <div key={s.title} className="group flex flex-col gap-4 bg-card p-8 transition hover:bg-primary hover:text-primary-foreground">
             <s.icon className="h-10 w-10 text-primary transition group-hover:text-primary-foreground group-hover:scale-110" strokeWidth={1.5} />
