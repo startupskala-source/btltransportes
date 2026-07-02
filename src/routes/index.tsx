@@ -210,7 +210,7 @@ function Marquee() {
 function Partners() {
   const logos = [
     { id: 1, name: "Whirlpool", src: whirlpoolLogo },
-    { id: 2, name: "Electrolux", src: electroluxLogo },
+    { id: 2, name: "Martinello", src: martinelloAsset.url },
     { id: 3, name: "Philips", src: philipsLogo },
     { id: 4, name: "Colormaq", src: colormaqLogo },
     { id: 5, name: "Gelopar", src: geloparLogo },
@@ -239,7 +239,7 @@ function Clients() {
     { id: 1, name: "Zema", src: zemaLogo },
     { id: 2, name: "Grupo Mateus", src: mateusLogo },
     { id: 3, name: "Magazine Liliani", src: lilianiLogo },
-    { id: 4, name: "Martinello", src: martinelloAsset.url },
+    { id: 4, name: "Electrolux", src: electroluxLogo },
   ];
   return (
     <section className="relative isolate overflow-hidden bg-white py-16 md:py-20">
