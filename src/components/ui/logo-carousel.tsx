@@ -112,6 +112,8 @@ interface LogoCarouselProps {
 }
 
 export function LogoCarousel({ columnCount = 4, logos }: LogoCarouselProps) {
+  const isMobile = useIsMobile();
+  const effectiveColumnCount = isMobile ? Math.min(2, columnCount) : columnCount;
   const [logoSets, setLogoSets] = useState<CarouselLogo[][]>([]);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -120,13 +122,15 @@ export function LogoCarousel({ columnCount = 4, logos }: LogoCarouselProps) {
   }, []);
 
   useEffect(() => {
-    const id = setInterval(updateTime, 100);
-    return () => clearInterval(id);
-  }, [updateTime]);
+    setLogoSets(distributeLogos(logos, effectiveColumnCount));
+    setCurrentTime(0);
+  }, [logos, effectiveColumnCount]);
 
   useEffect(() => {
-    setLogoSets(distributeLogos(logos, columnCount));
-  }, [logos, columnCount]);
+    if (logoSets.length === 0) return;
+    const id = setInterval(updateTime, 100);
+    return () => clearInterval(id);
+  }, [updateTime, logoSets.length]);
 
   return (
     <div className="flex items-center justify-center gap-6 md:gap-10">
@@ -136,3 +140,4 @@ export function LogoCarousel({ columnCount = 4, logos }: LogoCarouselProps) {
     </div>
   );
 }
+
