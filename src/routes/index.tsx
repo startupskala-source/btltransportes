@@ -52,9 +52,9 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "BTL Transportes — Linha branca e bazar com segurança" },
-      { name: "description", content: "Transportadora especializada em linha branca e bazar. Frota própria, rastreamento em tempo real e cobertura nacional." },
-      { property: "og:title", content: "BTL Transportes — Linha branca e bazar" },
+      { title: "BTL Transportes — Especialistas em linha branca" },
+      { name: "description", content: "Transportadora especializada em linha branca. Frota própria, rastreamento em tempo real e cobertura nacional." },
+      { property: "og:title", content: "BTL Transportes — Linha branca" },
       { property: "og:description", content: "Frota própria, rastreamento e cobertura nacional para sua carga." },
       { property: "og:url", content: "/" },
     ],
@@ -165,7 +165,7 @@ function Hero() {
           delay={0.5}
           className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg"
         >
-          Especialistas em linha branca e bazar. Frota própria, equipe treinada e rastreamento em tempo real — do embarque à entrega.
+          Especialistas em linha branca. Frota própria, equipe treinada e rastreamento em tempo real — do embarque à entrega.
         </TextEffect>
 
         <div
@@ -195,7 +195,7 @@ function Hero() {
 function Marquee() {
   const items = [
     "Geladeiras", "Fogões", "Máquinas de lavar", "Micro-ondas", "Utensílios domésticos",
-    "Eletroportáteis", "Bazar", "Pequenos eletros", "Linha branca",
+    "Eletroportáteis", "Pequenos eletros", "Linha branca",
   ];
   const loop = [...items, ...items];
   return (
@@ -353,7 +353,7 @@ function WhyUs() {
             para <span className="text-primary italic">carga delicada.</span>
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Linha branca e bazar pedem cuidado redobrado. Cada motorista, ajudante e operador passa por treinamento contínuo — porque uma entrega bem feita começa muito antes do caminhão sair do pátio.
+            Linha branca pedem cuidado redobrado. Cada motorista, ajudante e operador passa por treinamento contínuo — porque uma entrega bem feita começa muito antes do caminhão sair do pátio.
           </p>
 
           {/* Differentiators as clean list */}
@@ -651,7 +651,7 @@ function Footer() {
             <img src={btlFooterLogo} alt="BTL Transportes" className="h-20 w-20 object-contain md:h-24 md:w-24" loading="lazy" />
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/80">
-            Especialistas em linha branca e bazar. Sua carga tratada com o mesmo cuidado de quem a fabricou.
+            Especialistas em linha branca. Sua carga tratada com o mesmo cuidado de quem a fabricou.
           </p>
         </div>
 
