@@ -105,8 +105,6 @@ function Nav() {
 }
 
 function BackgroundVideo({ className = "" }: { className?: string }) {
-  const [loaded, setLoaded] = useState(false);
-
   return (
     <>
       <img
@@ -122,8 +120,7 @@ function BackgroundVideo({ className = "" }: { className?: string }) {
         playsInline
         preload="metadata"
         poster={heroPoster}
-        onCanPlay={() => setLoaded(true)}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"} ${className}`}
+        className={`absolute inset-0 h-full w-full object-cover ${className}`}
       >
         <source src={heroVideoMobileWebm} type="video/webm" media="(max-width: 767px)" />
         <source src={heroVideoWebm} type="video/webm" />
