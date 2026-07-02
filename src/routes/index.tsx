@@ -4,6 +4,8 @@ import { SatelliteBrazilMap } from "@/components/ui/satellite-brazil-map";
 
 import warehouse from "@/assets/warehouse-premium.jpg";
 import heroPoster from "@/assets/hero-truck.jpg";
+import heroVideoWebm from "@/assets/hero-truck.webm";
+import heroVideoMobileWebm from "@/assets/hero-truck-mobile.webm";
 import heroVideo from "@/assets/hero-truck.mp4";
 import heroVideoMobile from "@/assets/hero-truck-mobile.mp4";
 import btlLogo from "@/assets/btl-logo-new.png";
@@ -123,6 +125,8 @@ function BackgroundVideo({ className = "" }: { className?: string }) {
         onCanPlay={() => setLoaded(true)}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"} ${className}`}
       >
+        <source src={heroVideoMobileWebm} type="video/webm" media="(max-width: 767px)" />
+        <source src={heroVideoWebm} type="video/webm" />
         <source src={heroVideoMobile} type="video/mp4" media="(max-width: 767px)" />
         <source src={heroVideo} type="video/mp4" />
       </video>
