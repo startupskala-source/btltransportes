@@ -239,7 +239,7 @@ function Clients() {
     { id: 1, name: "Zema", src: zemaLogo },
     { id: 2, name: "Grupo Mateus", src: mateusLogo },
     { id: 3, name: "Magazine Liliani", src: lilianiLogo },
-    { id: 4, name: "Cliente", src: clienteExtraLogo },
+    { id: 4, name: "Martinello", src: martinelloAsset.url },
   ];
   return (
     <section className="relative isolate overflow-hidden bg-white py-16 md:py-20">
