@@ -19,7 +19,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 const distributeLogos = (allLogos: CarouselLogo[], columnCount: number): CarouselLogo[][] => {
-  const shuffled = shuffleArray(allLogos);
+  const shuffled = [...allLogos];
   const columns: CarouselLogo[][] = Array.from({ length: columnCount }, () => []);
   shuffled.forEach((logo, index) => {
     columns[index % columnCount].push(logo);
