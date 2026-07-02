@@ -25,11 +25,7 @@ export function LogoCloud({
 }: LogoCloudProps) {
   return (
     <div
-      className={cn(
-        "group relative w-full overflow-hidden",
-        "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
-        className,
-      )}
+      className={cn("group relative w-full overflow-hidden", className)}
       {...props}
     >
       <div
@@ -37,6 +33,7 @@ export function LogoCloud({
         style={
           {
             ["--marquee-duration" as string]: `${speed}s`,
+            animationDelay: `-${speed / 2}s`,
           } as React.CSSProperties
         }
       >
