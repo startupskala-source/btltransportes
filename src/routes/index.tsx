@@ -736,7 +736,7 @@ function Footer() {
 
       <div className="relative z-20 border-t border-white/10 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-4 text-xs text-white/70 md:flex-row md:py-6">
-          <p>© {year} BTL Transportes e Armazenagem. Todos os direitos reservados.</p>
+          <p>Copyright © 2026 BTL Transportes. Todos os direitos reservados.</p>
           <p className="uppercase tracking-[0.25em]">CNPJ 34.904.898/0003-06 · ANTT · Carga Segurada</p>
         </div>
         <div className="mx-auto max-w-7xl px-6 pb-6 text-center md:pb-8">
