@@ -236,26 +236,11 @@ function Partners() {
 
 function Clients() {
   const logos = [
-    { src: zemaLogo, alt: "Zema" },
-    { src: mateusLogo, alt: "Grupo Mateus" },
-    { src: lilianiLogo, alt: "Magazine Liliani" },
-    { src: clienteExtraLogo, alt: "Cliente" },
+    { id: 1, name: "Zema", src: zemaLogo },
+    { id: 2, name: "Grupo Mateus", src: mateusLogo },
+    { id: 3, name: "Magazine Liliani", src: lilianiLogo },
+    { id: 4, name: "Cliente", src: clienteExtraLogo },
   ];
-  // Widen each track so the combined width exceeds any viewport — no blank gaps.
-  const trackLogos = [...logos, ...logos, ...logos, ...logos, ...logos, ...logos];
-  const Track = () => (
-    <div className="flex shrink-0 items-center gap-8 pr-8 md:gap-24 md:pr-24">
-      {trackLogos.map((logo, i) => (
-        <img
-          key={`${logo.alt}-${i}`}
-          src={logo.src}
-          alt={logo.alt}
-          className="h-10 w-auto shrink-0 object-contain opacity-90 transition hover:opacity-100 md:h-16"
-          loading="lazy"
-        />
-      ))}
-    </div>
-  );
   return (
     <section className="relative isolate overflow-hidden bg-white py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
@@ -267,16 +252,7 @@ function Clients() {
             Quem confia na BTL
           </h2>
         </div>
-      </div>
-
-      <div className="group relative w-full overflow-hidden">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent md:w-24" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent md:w-24" />
-
-        <div className="flex w-max animate-marquee [will-change:transform] [transform:translateZ(0)] group-hover:[animation-play-state:paused]">
-          <Track />
-          <Track />
-        </div>
+        <LogoCarousel columnCount={4} logos={logos} />
       </div>
     </section>
   );
