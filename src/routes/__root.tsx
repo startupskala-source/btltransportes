@@ -87,8 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Skala" },
       { name: "twitter:title", content: "BTL Transportes — Especialistas em linha branca" },
       { name: "twitter:description", content: "Transportadora especializada em linha branca. Frota própria, rastreamento e cobertura nacional." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5e8f361-ca95-4eb2-9c99-4a167ed89173/id-preview-c710ad9c--f121d32a-e98e-4f0e-a0f3-a1997ff07689.lovable.app-1782211289825.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5e8f361-ca95-4eb2-9c99-4a167ed89173/id-preview-c710ad9c--f121d32a-e98e-4f0e-a0f3-a1997ff07689.lovable.app-1782211289825.png" },
+      { property: "og:image", content: "/assets/btl-logo-new-plkKxY83.png" },
+      { name: "twitter:image", content: "/assets/btl-logo-new-plkKxY83.png" },
     ],
     links: [
       {
