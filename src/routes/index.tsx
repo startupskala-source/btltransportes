@@ -48,6 +48,12 @@ import {
   Target,
   Mountain,
   Telescope,
+  Handshake,
+  Users,
+  Heart,
+  UserCheck,
+  Scale,
+  Home,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
