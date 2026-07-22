@@ -6,11 +6,12 @@ import { diferenciaisWarehouseImage } from "@/assets/diferenciais-warehouse-base
 const warehouse = diferenciaisWarehouseImage;
 
 
-import heroPoster from "@/assets/hero-truck.jpg";
-import heroVideoWebm from "@/assets/hero-truck.webm";
-import heroVideoMobileWebm from "@/assets/hero-truck-mobile.webm";
-import heroVideo from "@/assets/hero-truck.mp4";
-import heroVideoMobile from "@/assets/hero-truck-mobile.mp4";
+import heroVideoAsset from "@/assets/hero-skala.mp4.asset.json";
+import heroVideoMobileAsset from "@/assets/hero-skala-mobile.mp4.asset.json";
+import heroPosterAsset from "@/assets/hero-skala-poster.jpg.asset.json";
+const heroPoster = heroPosterAsset.url;
+const heroVideo = heroVideoAsset.url;
+const heroVideoMobile = heroVideoMobileAsset.url;
 import btlLogo from "@/assets/btl-logo-new.png";
 import btlFooterLogo from "@/assets/btl-footer-logo.png";
 
@@ -58,7 +59,10 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Frota própria, rastreamento e cobertura nacional para sua carga." },
       { property: "og:url", content: "/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "preload", as: "image", href: heroPoster, fetchpriority: "high" },
+    ],
   }),
   component: Index,
 });
@@ -127,8 +131,6 @@ function BackgroundVideo({ className = "" }: { className?: string }) {
         poster={heroPoster}
         className={`absolute inset-0 h-full w-full object-cover ${className}`}
       >
-        <source src={heroVideoMobileWebm} type="video/webm" media="(max-width: 767px)" />
-        <source src={heroVideoWebm} type="video/webm" />
         <source src={heroVideoMobile} type="video/mp4" media="(max-width: 767px)" />
         <source src={heroVideo} type="video/mp4" />
       </video>
