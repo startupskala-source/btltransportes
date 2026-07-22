@@ -442,14 +442,9 @@ function Essence() {
         </div>
       </div>
 
-    </section>
-  );
-}
-
-      </div>
-
       {/* Nossos Valores */}
       <div className="bg-primary text-primary-foreground">
+
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
           <div className="mb-14 text-center">
             <div className="mb-3 h-px w-16 mx-auto bg-[var(--brand-amber)]/60" />
