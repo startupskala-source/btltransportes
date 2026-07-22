@@ -446,6 +446,57 @@ function Essence() {
   );
 }
 
+      </div>
+
+      {/* Nossos Valores */}
+      <div className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
+          <div className="mb-14 text-center">
+            <div className="mb-3 h-px w-16 mx-auto bg-[var(--brand-amber)]/60" />
+            <h3 className="font-display text-3xl tracking-[0.18em] md:text-4xl">
+              NOSSOS <span className="text-[var(--brand-amber)]">VALORES</span>
+            </h3>
+            <div className="mt-3 h-px w-16 mx-auto bg-[var(--brand-amber)]/60" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
+            {[
+              { icon: Handshake, title: "Lealdade", desc: "Somos leais com as pessoas, com a empresa e com os compromissos assumidos." },
+              { icon: Users, title: "Comprometimento", desc: "Fazemos o que precisa ser feito com dedicação, responsabilidade e foco em resultados." },
+              { icon: Heart, title: "Gentileza", desc: "Tratamos todos com respeito, empatia e humanidade, sempre." },
+              { icon: UserCheck, title: "Postura de Dono", desc: "Agimos como donos em cada decisão, cuidando do que é nosso e do que é dos outros." },
+              { icon: ShieldCheck, title: "Segurança", desc: "Cuidamos da vida, das pessoas e das cargas com atenção, responsabilidade e disciplina." },
+              { icon: Scale, title: "Integridade", desc: "Somos verdadeiros, éticos e transparentes em tudo o que fazemos." },
+              { icon: Home, title: "Família", desc: "Valorizamos as relações, cuidamos uns dos outros e construímos juntos." },
+            ].map((v) => (
+              <div key={v.title} className="flex flex-col items-center text-center">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[var(--brand-amber)]/70 text-[var(--brand-amber)]">
+                  <v.icon className="h-6 w-6" strokeWidth={1.6} />
+                </div>
+                <h4 className="font-display text-sm tracking-[0.18em] text-[var(--brand-amber)]">
+                  {v.title.toUpperCase()}
+                </h4>
+                <p className="mt-2 text-[11px] leading-relaxed text-primary-foreground/75 md:text-xs">
+                  {v.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 border-t border-[var(--brand-amber)]/25 pt-6 text-[11px] tracking-[0.32em] text-primary-foreground/80 md:text-xs">
+            <span>CONFIANÇA QUE <span className="text-[var(--brand-amber)]">MOVE</span></span>
+            <span className="text-[var(--brand-amber)]/50">·</span>
+            <span>PARCERIA QUE <span className="text-[var(--brand-amber)]">GERA</span></span>
+            <span className="text-[var(--brand-amber)]/50">·</span>
+            <span>CAMINHOS QUE <span className="text-[var(--brand-amber)]">CONECTAM</span></span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  );
+}
+
 function Coverage() {
   const regions = [
     { name: "Sudeste", states: "SP · MG · ES" },
