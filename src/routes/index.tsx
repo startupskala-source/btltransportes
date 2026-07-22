@@ -128,8 +128,6 @@ function BackgroundVideo({ className = "" }: { className?: string }) {
         poster={heroPoster}
         className={`absolute inset-0 h-full w-full object-cover ${className}`}
       >
-        <source src={heroVideoMobileWebm} type="video/webm" media="(max-width: 767px)" />
-        <source src={heroVideoWebm} type="video/webm" />
         <source src={heroVideoMobile} type="video/mp4" media="(max-width: 767px)" />
         <source src={heroVideo} type="video/mp4" />
       </video>
