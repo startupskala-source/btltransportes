@@ -555,91 +555,69 @@ function Cta() {
         </div>
 
         <form
-          action="https://api.web3forms.com/submit"
+          action="/api/contact"
           method="POST"
           onSubmit={async (e) => {
             e.preventDefault();
+
             const form = e.currentTarget as HTMLFormElement;
             const raw = new FormData(form);
 
-            const nome = String(raw.get("nome") || "").trim();
-            const empresa = String(raw.get("empresa") || "").trim();
-            const email = String(raw.get("email") || "").trim();
-            const whatsapp = String(raw.get("whatsapp") || "").trim();
-            const assunto = String(raw.get("assunto") || "").trim();
-            const mensagem = String(raw.get("mensagem") || "").trim();
-
-            const payload = new FormData();
-
-            // Web3Forms
-            payload.set("access_key", "68a1e80d-d580-4e81-b41a-2488b58debf6");
-            payload.set("subject", `Novo contato pelo site da BTL — ${assunto || "Contato geral"}`);
-            payload.set("from_name", "Site BTL Transportes");
-
-            // Campos padronizados recomendados pelo Web3Forms
-            payload.set("name", nome);
-            payload.set("email", email);
-            payload.set("phone", whatsapp);
-            payload.set("message", mensagem || "Contato enviado sem mensagem adicional.");
-            payload.set("replyto", email);
-
-            // Informações adicionais
-            payload.set("Empresa", empresa || "Não informada");
-            payload.set("Departamento", assunto || "Não informado");
-
-            // Honeypot antispam
-            payload.set("botcheck", String(raw.get("botcheck") || ""));
+            const payload = {
+              nome: String(raw.get("nome") || "").trim(),
+              empresa: String(raw.get("empresa") || "").trim(),
+              email: String(raw.get("email") || "").trim(),
+              whatsapp: String(raw.get("whatsapp") || "").trim(),
+              assunto: String(raw.get("assunto") || "").trim(),
+              mensagem: String(raw.get("mensagem") || "").trim(),
+              botcheck: String(raw.get("botcheck") || "").trim(),
+            };
 
             setStatus("sending");
             setErrorMsg("");
 
             try {
-              const res = await fetch("https://api.web3forms.com/submit", {
+              const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: {
+                  "Content-Type": "application/json",
                   Accept: "application/json",
                 },
-                body: payload,
+                body: JSON.stringify(payload),
               });
 
-              const responseText = await res.text();
-              let json: any = null;
+              const data = await response.json().catch(() => null);
 
-              try {
-                json = JSON.parse(responseText);
-              } catch {
-                // Mantém o texto bruto para exibir um erro útil.
-              }
-
-              const apiMessage =
-                json?.message ||
-                json?.body?.message ||
-                responseText ||
-                `Erro HTTP ${res.status}`;
-
-              if (res.ok && json?.success === true) {
+              if (response.ok && data?.success) {
                 setStatus("success");
                 form.reset();
-              } else {
-                console.error("Web3Forms:", {
-                  status: res.status,
-                  response: json || responseText,
-                });
-                setStatus("error");
-                setErrorMsg(`Web3Forms: ${apiMessage}`);
+                return;
               }
-            } catch (err) {
-              console.error("Erro ao enviar para o Web3Forms:", err);
+
               setStatus("error");
               setErrorMsg(
-                "Não foi possível conectar ao Web3Forms. Verifique a conexão e tente novamente."
+                data?.message ||
+                  "Não foi possível enviar a mensagem. Tente novamente em alguns instantes."
+              );
+            } catch (error) {
+              console.error("Erro ao enviar o formulário:", error);
+              setStatus("error");
+              setErrorMsg(
+                "Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente."
               );
             }
           }}
           className="space-y-10"
         >
-          {/* Honeypot */}
-          <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
+          {/* Campo invisível antispam */}
+          <input
+            type="text"
+            name="botcheck"
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
 
           {/* Two-column fields */}
           <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
@@ -695,9 +673,10 @@ function Cta() {
 
           {status === "success" && (
             <p className="text-center text-sm font-medium text-green-700">
-              Mensagem enviada! Em breve entraremos em contato.
+              Mensagem enviada com sucesso! Em breve entraremos em contato.
             </p>
           )}
+
           {status === "error" && (
             <p className="text-center text-sm font-medium text-red-700">
               {errorMsg || "Erro ao enviar. Tente novamente."}
@@ -708,6 +687,7 @@ function Cta() {
     </section>
   );
 }
+
 
 function UnderlineField({
   name,
