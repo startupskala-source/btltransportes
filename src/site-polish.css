@@ -307,12 +307,21 @@ header.sticky nav a:hover::after {
 /* Footer */
 footer {
   background:
-    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primary) 28%, transparent), transparent 34%),
-    #050505;
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 255, 255, 0.09),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #6b2637 0%,
+      #571d2d 50%,
+      #431521 100%
+    );
 }
 
 footer > div:nth-of-type(2) {
-  border-color: rgba(255,255,255,0.08);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 /* Foco e acessibilidade */
