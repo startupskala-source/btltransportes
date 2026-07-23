@@ -6,12 +6,8 @@ import { diferenciaisWarehouseImage } from "@/assets/diferenciais-warehouse-base
 const warehouse = diferenciaisWarehouseImage;
 
 
-import heroVideoAsset from "@/assets/hero-skala.mp4.asset.json";
-import heroVideoMobileAsset from "@/assets/hero-skala-mobile.mp4.asset.json";
-import heroPosterAsset from "@/assets/hero-skala-poster.jpg.asset.json";
-const heroPoster = heroPosterAsset.url;
-const heroVideo = heroVideoAsset.url;
-const heroVideoMobile = heroVideoMobileAsset.url;
+import caminhaodocVideo from "@/assets/caminhaodoc.mp4";
+import heroPoster from "@/assets/hero-truck.jpg";
 import btlLogo from "@/assets/btl-logo-new.png";
 import btlFooterLogo from "@/assets/btl-footer-logo.png";
 
@@ -128,6 +124,7 @@ function BackgroundVideo({ className = "" }: { className?: string }) {
         className={`absolute inset-0 h-full w-full object-cover ${className}`}
         loading="eager"
       />
+      {/* Mobile video (max 767px) */}
       <video
         autoPlay
         muted
@@ -135,10 +132,21 @@ function BackgroundVideo({ className = "" }: { className?: string }) {
         playsInline
         preload="metadata"
         poster={heroPoster}
-        className={`absolute inset-0 h-full w-full object-cover ${className}`}
+        className={`absolute inset-0 h-full w-full object-cover md:hidden ${className}`}
       >
-        <source src={heroVideoMobile} type="video/mp4" media="(max-width: 767px)" />
-        <source src={heroVideo} type="video/mp4" />
+        <source src={caminhaodocVideo} type="video/mp4" />
+      </video>
+      {/* Desktop video (768px+) */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster={heroPoster}
+        className={`absolute inset-0 hidden md:block h-full w-full object-cover ${className}`}
+      >
+        <source src={caminhaodocVideo} type="video/mp4" />
       </video>
     </>
   );
