@@ -121,12 +121,18 @@ function Nav() {
 
 function BackgroundVideo({ className = "" }: { className?: string }) {
   return (
-    <img
-      src={heroPoster}
-      alt="Caminhão BTL em rota"
+    <video
       className={`absolute inset-0 h-full w-full object-cover ${className}`}
-      loading="eager"
-    />
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      poster={heroPoster}
+    >
+      <source src={heroWebm} type="video/webm" />
+      <source src={heroMp4} type="video/mp4" />
+    </video>
   );
 }
 
