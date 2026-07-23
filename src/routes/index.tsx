@@ -74,6 +74,9 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <a href="#servicos" className="btl-skip-link">
+        Pular para o conteúdo
+      </a>
       <Nav />
       <Hero />
       <Partners />
@@ -93,25 +96,34 @@ function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        <a href="#top" className="flex items-center gap-3">
+        <a href="#top" aria-label="Voltar ao início" className="flex items-center gap-3">
           <img src={btlLogo} alt="BTL Transportes e Armazenagem" className="h-12 w-12 object-contain" />
           <div className="leading-tight">
             <div className="font-display text-xl tracking-wider text-primary">BTL TRANSPORTES</div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Transportes e Armazenagem</div>
           </div>
         </a>
-        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
+        <nav aria-label="Navegação principal" className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
           <a href="#servicos" className="transition hover:text-primary">Serviços</a>
           <a href="#diferenciais" className="transition hover:text-primary">Diferenciais</a>
           <a href="#cobertura" className="transition hover:text-primary">Cobertura</a>
           <a href="#contato" className="transition hover:text-primary">Contato</a>
         </nav>
-        <a
-          href="#contato"
-          className="btn-primary-shine hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold uppercase tracking-wider md:inline-flex"
-        >
-          Entrar em contato <ArrowRight className="h-4 w-4" />
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href="#contato"
+            className="btn-primary-shine inline-flex min-h-11 items-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider md:hidden"
+            aria-label="Ir para o formulário de contato"
+          >
+            Contato
+          </a>
+          <a
+            href="#contato"
+            className="btn-primary-shine hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold uppercase tracking-wider md:inline-flex"
+          >
+            Entrar em contato <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
       </div>
     </header>
   );
@@ -602,20 +614,48 @@ function Cta() {
               setErrorMsg("Não foi possível enviar. Verifique sua conexão.");
             }
           }}
-          className="space-y-10"
+          className="btl-contact-form space-y-10"
+          aria-busy={status === "sending"}
         >
           {/* Honeypot */}
           <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
 
           {/* Two-column fields */}
           <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
-            <UnderlineField name="nome" label="Nome" required />
-            <UnderlineField name="empresa" label="Empresa" />
-            <UnderlineField name="email" label="Email" type="email" required />
-            <UnderlineField name="whatsapp" label="WhatsApp" type="tel" />
+            <UnderlineField
+              name="nome"
+              label="Nome"
+              required
+              autoComplete="name"
+            />
+            <UnderlineField
+              name="empresa"
+              label="Empresa"
+              autoComplete="organization"
+            />
+            <UnderlineField
+              name="email"
+              label="Email"
+              type="email"
+              required
+              autoComplete="email"
+              inputMode="email"
+            />
+            <UnderlineField
+              name="whatsapp"
+              label="WhatsApp"
+              type="tel"
+              autoComplete="tel"
+              inputMode="tel"
+            />
           </div>
 
-          <UnderlineField name="mensagem" label="Mensagem" />
+          <UnderlineField
+            name="mensagem"
+            label="Mensagem"
+            multiline
+            autoComplete="off"
+          />
 
           {/* Bottom row: radios + button */}
           <div className="grid items-end gap-10 md:grid-cols-2">
@@ -659,16 +699,24 @@ function Cta() {
             </button>
           </div>
 
-          {status === "success" && (
-            <p className="text-center text-sm font-medium text-green-700">
-              Mensagem enviada! Em breve entraremos em contato.
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-center text-sm font-medium text-red-700">
-              {errorMsg || "Erro ao enviar. Tente novamente."}
-            </p>
-          )}
+          <div aria-live="polite" aria-atomic="true">
+            {status === "success" && (
+              <p
+                role="status"
+                className="btl-form-feedback btl-form-feedback--success text-center text-sm font-medium text-green-700"
+              >
+                Mensagem enviada! Em breve entraremos em contato.
+              </p>
+            )}
+            {status === "error" && (
+              <p
+                role="alert"
+                className="btl-form-feedback btl-form-feedback--error text-center text-sm font-medium text-red-700"
+              >
+                {errorMsg || "Erro ao enviar. Tente novamente."}
+              </p>
+            )}
+          </div>
         </form>
       </div>
     </section>
@@ -680,28 +728,55 @@ function UnderlineField({
   label,
   required,
   type = "text",
+  autoComplete,
+  inputMode,
+  multiline = false,
 }: {
   name: string;
   label: string;
   required?: boolean;
   type?: string;
+  autoComplete?: string;
+  inputMode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+  multiline?: boolean;
 }) {
+  const fieldId = `campo-${name}`;
+  const commonClassName =
+    "btl-form-control w-full border-0 border-b-2 border-primary/20 bg-transparent text-sm text-foreground outline-none transition focus:border-primary";
+
   return (
-    <label className="group block">
+    <label htmlFor={fieldId} className="group block">
       <span className="mb-3 block text-sm font-medium text-primary">
         {label}
-        {required && <span className="ml-0.5">*</span>}
+        {required && (
+          <span className="ml-0.5" aria-hidden="true">
+            *
+          </span>
+        )}
       </span>
-      <input
-        name={name}
-        type={type}
-        required={required}
-        className="w-full border-0 border-b-2 border-primary/20 bg-transparent pb-3 text-sm text-foreground outline-none transition focus:border-primary"
-      />
+
+      {multiline ? (
+        <textarea
+          id={fieldId}
+          name={name}
+          required={required}
+          autoComplete={autoComplete}
+          className={`${commonClassName} min-h-32 resize-y pb-3 leading-relaxed`}
+        />
+      ) : (
+        <input
+          id={fieldId}
+          name={name}
+          type={type}
+          required={required}
+          autoComplete={autoComplete}
+          inputMode={inputMode}
+          className={`${commonClassName} min-h-12 pb-3`}
+        />
+      )}
     </label>
   );
 }
-
 
 function Footer() {
   const year = new Date().getFullYear();
