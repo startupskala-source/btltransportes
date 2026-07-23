@@ -119,7 +119,13 @@ function Nav() {
   );
 }
 
-function BackgroundVideo({ className = "" }: { className?: string }) {
+function BackgroundVideo({
+  className = "",
+  desktopSrc,
+}: {
+  className?: string;
+  desktopSrc?: string;
+}) {
   return (
     <video
       className={`absolute inset-0 h-full w-full object-cover ${className}`}
@@ -130,8 +136,23 @@ function BackgroundVideo({ className = "" }: { className?: string }) {
       preload="auto"
       poster={heroPoster}
     >
-      <source src={heroWebm} type="video/webm" />
-      <source src={heroMp4} type="video/mp4" />
+      {desktopSrc && (
+        <source
+          src={desktopSrc}
+          type="video/mp4"
+          media="(min-width: 768px)"
+        />
+      )}
+      <source
+        src={heroWebm}
+        type="video/webm"
+        media={desktopSrc ? "(max-width: 767px)" : undefined}
+      />
+      <source
+        src={heroMp4}
+        type="video/mp4"
+        media={desktopSrc ? "(max-width: 767px)" : undefined}
+      />
     </video>
   );
 }
@@ -142,7 +163,7 @@ function Hero() {
       id="top"
       className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-black"
     >
-      <BackgroundVideo className="z-0" />
+      <BackgroundVideo className="z-0" desktopSrc="/hero-desktop-new.mp4" />
 
       {/* readability overlay */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
@@ -817,4 +838,3 @@ function BrazilFiliais() {
     </section>
   );
 }
-
