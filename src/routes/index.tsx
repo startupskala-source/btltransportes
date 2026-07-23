@@ -6,7 +6,6 @@ import { diferenciaisWarehouseImage } from "@/assets/diferenciais-warehouse-base
 const warehouse = diferenciaisWarehouseImage;
 
 
-import caminhaodocVideo from "@/assets/caminhaodoc.mp4";
 import heroPoster from "@/assets/hero-truck.jpg";
 import btlLogo from "@/assets/btl-logo-new.png";
 import btlFooterLogo from "@/assets/btl-footer-logo.png";
@@ -117,38 +116,12 @@ function Nav() {
 
 function BackgroundVideo({ className = "" }: { className?: string }) {
   return (
-    <>
-      <img
-        src={heroPoster}
-        alt="Caminhão BTL em rota"
-        className={`absolute inset-0 h-full w-full object-cover ${className}`}
-        loading="eager"
-      />
-      {/* Mobile video (max 767px) */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={heroPoster}
-        className={`absolute inset-0 h-full w-full object-cover md:hidden ${className}`}
-      >
-        <source src={caminhaodocVideo} type="video/mp4" />
-      </video>
-      {/* Desktop video (768px+) */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={heroPoster}
-        className={`absolute inset-0 hidden md:block h-full w-full object-cover ${className}`}
-      >
-        <source src={caminhaodocVideo} type="video/mp4" />
-      </video>
-    </>
+    <img
+      src={heroPoster}
+      alt="Caminhão BTL em rota"
+      className={`absolute inset-0 h-full w-full object-cover ${className}`}
+      loading="eager"
+    />
   );
 }
 

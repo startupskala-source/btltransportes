@@ -1,0 +1,7 @@
+{
+  "framework": "tanstack-start",
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist",
+  "installCommand": "bun install",
+  "nodeVersion": "24.x"
+}
