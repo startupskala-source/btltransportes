@@ -316,3 +316,305 @@ footer > div:nth-of-type(2) {
     min-height: 12.5rem;
   }
 }
+/* ==========================================================================
+   UX Premium — navegação, legibilidade, mobile e acessibilidade
+   Nenhuma regra abaixo modifica #top ou as animações originais dos botões.
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+a,
+button,
+input,
+textarea,
+label {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+/* Pular para o conteúdo — aparece somente ao usar teclado */
+.btl-skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 9999;
+  transform: translateY(-160%);
+  border-radius: 999px;
+  background: #7c0f24;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 16px 38px -20px rgba(0, 0, 0, 0.7);
+  transition: transform 180ms ease;
+}
+
+.btl-skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Foco visível e consistente */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--primary) 60%, white 40%);
+  outline-offset: 3px;
+}
+
+/* Navegação mais clara */
+header.sticky nav a {
+  position: relative;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+header.sticky nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0.4rem;
+  height: 1px;
+  background: var(--primary);
+  transition: right 240ms ease;
+}
+
+header.sticky nav a:hover::after,
+header.sticky nav a:focus-visible::after {
+  right: 0;
+}
+
+/* Parceiros e clientes — transição visual mais suave entre seções */
+.btl-partners,
+.btl-clients {
+  border-block:
+    1px solid color-mix(in oklab, var(--primary) 6%, white 94%);
+}
+
+/* Serviços — leitura e toque melhores */
+#servicos > div:last-child {
+  gap: 1rem;
+  overflow: visible;
+  background: transparent;
+}
+
+#servicos > div:last-child > div {
+  min-height: 17rem;
+  border-radius: var(--polish-radius-md);
+  padding: clamp(1.55rem, 3vw, 2.1rem);
+  box-shadow:
+    inset 0 0 0 1px var(--polish-border),
+    0 24px 56px -46px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+/* Diferenciais — números mais fáceis de escanear */
+#diferenciais ul + div > div {
+  min-width: 0;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 10%, white 90%);
+  border-radius: var(--polish-radius-sm);
+  background: rgba(255, 255, 255, 0.66);
+}
+
+/* Valores — melhor hierarquia e leitura */
+.btl-value-card h4 {
+  line-height: 1.15;
+}
+
+.btl-value-card p {
+  min-height: 3.2rem;
+}
+
+/* Cobertura — cards separados e clicáveis visualmente */
+#cobertura > div:last-child {
+  gap: 0.85rem;
+  overflow: visible;
+  background: transparent;
+}
+
+#cobertura > div:last-child > div {
+  min-height: 10rem;
+  border-radius: var(--polish-radius-sm);
+  padding: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+/* Formulário */
+.btl-contact-form {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.btl-form-control {
+  border-radius: 0;
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.btl-form-control:hover {
+  border-color: color-mix(in oklab, var(--primary) 38%, white 62%);
+}
+
+.btl-form-control:focus {
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 82%,
+      color-mix(in oklab, var(--primary) 4%, transparent)
+    );
+  box-shadow: 0 8px 18px -18px color-mix(in oklab, var(--primary) 80%, transparent);
+}
+
+.btl-contact-form fieldset label {
+  min-height: 2.75rem;
+  border-radius: 0.75rem;
+  padding: 0.45rem 0.55rem;
+}
+
+.btl-contact-form fieldset label:hover {
+  background: color-mix(in oklab, var(--primary) 4%, white 96%);
+}
+
+.btl-form-feedback {
+  margin-top: 0.5rem;
+  border-radius: 0.9rem;
+  padding: 0.9rem 1rem;
+}
+
+.btl-form-feedback--success {
+  border: 1px solid rgba(21, 128, 61, 0.2);
+  background: rgba(240, 253, 244, 0.92);
+}
+
+.btl-form-feedback--error {
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  background: rgba(254, 242, 242, 0.92);
+}
+
+/* Rodapé — links mais fáceis de identificar */
+footer a:not(.skala-credit) {
+  text-underline-offset: 0.25em;
+}
+
+footer a:not(.skala-credit):hover,
+footer a:not(.skala-credit):focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+/* Interações de hover apenas em dispositivos que realmente possuem hover */
+@media (hover: hover) and (pointer: fine) {
+  #servicos > div:last-child > div,
+  #cobertura > div:last-child > div,
+  .btl-value-card {
+    transition:
+      transform 280ms ease,
+      box-shadow 280ms ease,
+      border-color 280ms ease,
+      background-color 280ms ease;
+  }
+
+  #servicos > div:last-child > div:hover,
+  #cobertura > div:last-child > div:hover {
+    transform: translateY(-5px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  header.sticky > div {
+    gap: 0.75rem;
+    padding-inline: 1rem;
+  }
+
+  header.sticky img {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  header.sticky a[href="#top"] > div > div:first-child {
+    font-size: 1rem;
+  }
+
+  header.sticky a[href="#top"] > div > div:last-child {
+    max-width: 10rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+  }
+
+  #servicos,
+  #cobertura {
+    padding-inline: 1rem;
+  }
+
+  #servicos > div:last-child {
+    grid-template-columns: 1fr;
+  }
+
+  #diferenciais > div {
+    grid-template-columns: 1fr;
+  }
+
+  #diferenciais ul + div {
+    gap: 0.55rem;
+  }
+
+  #diferenciais ul + div > div {
+    padding: 0.75rem;
+  }
+
+  .btl-value-card p {
+    min-height: auto;
+  }
+
+  #cobertura > div:last-child {
+    grid-template-columns: 1fr;
+  }
+
+  #contato > div {
+    width: 100%;
+  }
+
+  .btl-contact-form {
+    gap: 2rem;
+  }
+
+  .btl-contact-form > div:first-of-type {
+    gap: 1.7rem;
+  }
+
+  .btl-contact-form fieldset label {
+    min-height: 3rem;
+  }
+
+  footer > div.relative.z-20.mx-auto {
+    gap: 2rem;
+  }
+}
+
+/* Respeita a preferência de redução de movimento sem remover os efeitos
+   para usuários que não ativaram essa configuração. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
