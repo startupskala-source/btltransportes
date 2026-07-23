@@ -555,69 +555,59 @@ function Cta() {
         </div>
 
         <form
-          action="/api/contact"
-          method="POST"
           onSubmit={async (e) => {
             e.preventDefault();
-
             const form = e.currentTarget as HTMLFormElement;
             const raw = new FormData(form);
 
-            const payload = {
-              nome: String(raw.get("nome") || "").trim(),
-              empresa: String(raw.get("empresa") || "").trim(),
-              email: String(raw.get("email") || "").trim(),
-              whatsapp: String(raw.get("whatsapp") || "").trim(),
-              assunto: String(raw.get("assunto") || "").trim(),
-              mensagem: String(raw.get("mensagem") || "").trim(),
-              botcheck: String(raw.get("botcheck") || "").trim(),
-            };
+            const nome = String(raw.get("nome") || "").trim();
+            const empresa = String(raw.get("empresa") || "").trim();
+            const email = String(raw.get("email") || "").trim();
+            const whatsapp = String(raw.get("whatsapp") || "").trim();
+            const assunto = String(raw.get("assunto") || "").trim();
+            const mensagem = String(raw.get("mensagem") || "").trim();
+
+            const payload = new FormData();
+            payload.append("access_key", "68a1e80d-d580-4e81-b41a-2488b58debf6");
+            payload.append("subject", `📩 Novo contato BTL — ${assunto || "Sem assunto"}`);
+            payload.append("from_name", `BTL Transportes • ${nome || "Novo contato"}`);
+            if (email) {
+              payload.append("email", email);
+              payload.append("replyto", email);
+            }
+            payload.append("botcheck", String(raw.get("botcheck") || ""));
+
+            payload.append("👤 Nome", nome || "—");
+            payload.append("🏢 Empresa", empresa || "—");
+            payload.append("✉️ E-mail", email || "—");
+            payload.append("📱 WhatsApp", whatsapp || "—");
+            payload.append("🏷️ Assunto", assunto || "—");
+            payload.append("💬 Mensagem", mensagem || "—");
 
             setStatus("sending");
             setErrorMsg("");
-
             try {
-              const response = await fetch("/api/contact", {
+              const res = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json",
-                },
-                body: JSON.stringify(payload),
+                body: payload,
               });
-
-              const data = await response.json().catch(() => null);
-
-              if (response.ok && data?.success) {
+              const json = await res.json();
+              if (json.success) {
                 setStatus("success");
                 form.reset();
-                return;
+              } else {
+                setStatus("error");
+                setErrorMsg(json.message || "Falha no envio.");
               }
-
+            } catch (err) {
               setStatus("error");
-              setErrorMsg(
-                data?.message ||
-                  "Não foi possível enviar a mensagem. Tente novamente em alguns instantes."
-              );
-            } catch (error) {
-              console.error("Erro ao enviar o formulário:", error);
-              setStatus("error");
-              setErrorMsg(
-                "Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente."
-              );
+              setErrorMsg("Não foi possível enviar. Verifique sua conexão.");
             }
           }}
           className="space-y-10"
         >
-          {/* Campo invisível antispam */}
-          <input
-            type="text"
-            name="botcheck"
-            className="hidden"
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-          />
+          {/* Honeypot */}
+          <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
 
           {/* Two-column fields */}
           <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
@@ -673,10 +663,9 @@ function Cta() {
 
           {status === "success" && (
             <p className="text-center text-sm font-medium text-green-700">
-              Mensagem enviada com sucesso! Em breve entraremos em contato.
+              Mensagem enviada! Em breve entraremos em contato.
             </p>
           )}
-
           {status === "error" && (
             <p className="text-center text-sm font-medium text-red-700">
               {errorMsg || "Erro ao enviar. Tente novamente."}
@@ -687,7 +676,6 @@ function Cta() {
     </section>
   );
 }
-
 
 function UnderlineField({
   name,
