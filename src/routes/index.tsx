@@ -6,7 +6,12 @@ import { diferenciaisWarehouseImage } from "@/assets/diferenciais-warehouse-base
 const warehouse = diferenciaisWarehouseImage;
 
 
-import heroPoster from "@/assets/hero-truck.jpg";
+import heroPosterAsset from "@/assets/hero-desktop.jpg.asset.json";
+import heroMp4Asset from "@/assets/hero-desktop.mp4.asset.json";
+import heroWebmAsset from "@/assets/hero-desktop.webm.asset.json";
+const heroPoster = heroPosterAsset.url;
+const heroMp4 = heroMp4Asset.url;
+const heroWebm = heroWebmAsset.url;
 import btlLogo from "@/assets/btl-logo-new.png";
 import btlFooterLogo from "@/assets/btl-footer-logo.png";
 
@@ -116,12 +121,18 @@ function Nav() {
 
 function BackgroundVideo({ className = "" }: { className?: string }) {
   return (
-    <img
-      src={heroPoster}
-      alt="Caminhão BTL em rota"
+    <video
       className={`absolute inset-0 h-full w-full object-cover ${className}`}
-      loading="eager"
-    />
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      poster={heroPoster}
+    >
+      <source src={heroWebm} type="video/webm" />
+      <source src={heroMp4} type="video/mp4" />
+    </video>
   );
 }
 
