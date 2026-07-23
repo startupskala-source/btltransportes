@@ -50,6 +50,8 @@ import {
   Telescope,
   Handshake,
   Users,
+  Heart,
+  UserCheck,
   Scale,
   Home,
 } from "lucide-react";
@@ -454,47 +456,47 @@ function Essence() {
       </div>
 
       {/* Nossos Valores */}
-      <div className="relative isolate overflow-hidden bg-primary text-primary-foreground">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-[var(--brand-amber)]/10 blur-3xl" />
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-amber)]/55 to-transparent" />
-        </div>
+      <div className="bg-primary text-primary-foreground">
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-24">
-          <div className="mx-auto mb-12 max-w-2xl text-center md:mb-14">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[var(--brand-amber)]">
-              Essência BTL
-            </span>
-            <h3 className="mt-4 font-display text-4xl leading-none tracking-[0.08em] md:text-5xl">
-              VALORES QUE <span className="text-[var(--brand-amber)]">NOS MOVEM</span>
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
+          <div className="mb-14 text-center">
+            <div className="mb-3 h-px w-16 mx-auto bg-[var(--brand-amber)]/60" />
+            <h3 className="font-display text-3xl tracking-[0.18em] md:text-4xl">
+              NOSSOS <span className="text-[var(--brand-amber)]">VALORES</span>
             </h3>
+            <div className="mt-3 h-px w-16 mx-auto bg-[var(--brand-amber)]/60" />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
             {[
-              { icon: Handshake, title: "Lealdade", desc: "Compromisso com pessoas e parceiros." },
-              { icon: Users, title: "Comprometimento", desc: "Responsabilidade em cada entrega." },
-              { icon: ShieldCheck, title: "Segurança", desc: "Cuidado com vidas, cargas e caminhos." },
-              { icon: Scale, title: "Integridade", desc: "Ética e transparência sempre." },
-              { icon: Home, title: "Família", desc: "União para crescer juntos." },
+              { icon: Handshake, title: "Lealdade", desc: "Somos leais com as pessoas, com a empresa e com os compromissos assumidos." },
+              { icon: Users, title: "Comprometimento", desc: "Fazemos o que precisa ser feito com dedicação, responsabilidade e foco em resultados." },
+              { icon: Heart, title: "Gentileza", desc: "Tratamos todos com respeito, empatia e humanidade, sempre." },
+              { icon: UserCheck, title: "Postura de Dono", desc: "Agimos como donos em cada decisão, cuidando do que é nosso e do que é dos outros." },
+              { icon: ShieldCheck, title: "Segurança", desc: "Cuidamos da vida, das pessoas e das cargas com atenção, responsabilidade e disciplina." },
+              { icon: Scale, title: "Integridade", desc: "Somos verdadeiros, éticos e transparentes em tudo o que fazemos." },
+              { icon: Home, title: "Família", desc: "Valorizamos as relações, cuidamos uns dos outros e construímos juntos." },
             ].map((v) => (
-              <article
-                key={v.title}
-                className="group flex min-h-[210px] flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/[0.045] px-5 py-7 text-center backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[var(--brand-amber)]/55 hover:bg-white/[0.075]"
-              >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[var(--brand-amber)]/45 bg-[var(--brand-amber)]/10 text-[var(--brand-amber)] transition duration-300 group-hover:scale-105 group-hover:bg-[var(--brand-amber)]/15">
-                  <v.icon className="h-7 w-7" strokeWidth={1.6} />
+              <div key={v.title} className="flex flex-col items-center text-center">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[var(--brand-amber)]/70 text-[var(--brand-amber)]">
+                  <v.icon className="h-6 w-6" strokeWidth={1.6} />
                 </div>
-
-                <h4 className="mt-6 font-display text-xl tracking-[0.08em] text-white">
-                  {v.title}
+                <h4 className="font-display text-sm tracking-[0.18em] text-[var(--brand-amber)]">
+                  {v.title.toUpperCase()}
                 </h4>
-                <div className="mt-3 h-px w-8 bg-[var(--brand-amber)]/55 transition-all duration-300 group-hover:w-12" />
-                <p className="mt-4 max-w-[180px] text-sm leading-relaxed text-primary-foreground/68">
+                <p className="mt-2 text-[11px] leading-relaxed text-primary-foreground/75 md:text-xs">
                   {v.desc}
                 </p>
-              </article>
+              </div>
             ))}
+          </div>
+
+          <div className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 border-t border-[var(--brand-amber)]/25 pt-6 text-[11px] tracking-[0.32em] text-primary-foreground/80 md:text-xs">
+            <span>CONFIANÇA QUE <span className="text-[var(--brand-amber)]">MOVE</span></span>
+            <span className="text-[var(--brand-amber)]/50">·</span>
+            <span>PARCERIA QUE <span className="text-[var(--brand-amber)]">GERA</span></span>
+            <span className="text-[var(--brand-amber)]/50">·</span>
+            <span>CAMINHOS QUE <span className="text-[var(--brand-amber)]">CONECTAM</span></span>
           </div>
         </div>
       </div>
@@ -566,10 +568,13 @@ function Cta() {
             const mensagem = String(raw.get("mensagem") || "").trim();
 
             const payload = new FormData();
-            payload.append("access_key", "15665dfd-0a5d-465b-abbd-97911e59e3d0");
+            payload.append("access_key", "68a1e80d-d580-4e81-b41a-2488b58debf6");
             payload.append("subject", `📩 Novo contato BTL — ${assunto || "Sem assunto"}`);
             payload.append("from_name", `BTL Transportes • ${nome || "Novo contato"}`);
-            if (email) payload.append("replyto", email);
+            if (email) {
+              payload.append("email", email);
+              payload.append("replyto", email);
+            }
             payload.append("botcheck", String(raw.get("botcheck") || ""));
 
             payload.append("👤 Nome", nome || "—");
@@ -836,4 +841,3 @@ function BrazilFiliais() {
     </section>
   );
 }
-
