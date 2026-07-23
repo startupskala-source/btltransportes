@@ -555,6 +555,8 @@ function Cta() {
         </div>
 
         <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
           onSubmit={async (e) => {
             e.preventDefault();
             const form = e.currentTarget as HTMLFormElement;
@@ -568,40 +570,70 @@ function Cta() {
             const mensagem = String(raw.get("mensagem") || "").trim();
 
             const payload = new FormData();
-            payload.append("access_key", "68a1e80d-d580-4e81-b41a-2488b58debf6");
-            payload.append("subject", `📩 Novo contato BTL — ${assunto || "Sem assunto"}`);
-            payload.append("from_name", `BTL Transportes • ${nome || "Novo contato"}`);
-            if (email) {
-              payload.append("email", email);
-              payload.append("replyto", email);
-            }
-            payload.append("botcheck", String(raw.get("botcheck") || ""));
 
-            payload.append("👤 Nome", nome || "—");
-            payload.append("🏢 Empresa", empresa || "—");
-            payload.append("✉️ E-mail", email || "—");
-            payload.append("📱 WhatsApp", whatsapp || "—");
-            payload.append("🏷️ Assunto", assunto || "—");
-            payload.append("💬 Mensagem", mensagem || "—");
+            // Web3Forms
+            payload.set("access_key", "68a1e80d-d580-4e81-b41a-2488b58debf6");
+            payload.set("subject", `Novo contato pelo site da BTL — ${assunto || "Contato geral"}`);
+            payload.set("from_name", "Site BTL Transportes");
+
+            // Campos padronizados recomendados pelo Web3Forms
+            payload.set("name", nome);
+            payload.set("email", email);
+            payload.set("phone", whatsapp);
+            payload.set("message", mensagem || "Contato enviado sem mensagem adicional.");
+            payload.set("replyto", email);
+
+            // Informações adicionais
+            payload.set("Empresa", empresa || "Não informada");
+            payload.set("Departamento", assunto || "Não informado");
+
+            // Honeypot antispam
+            payload.set("botcheck", String(raw.get("botcheck") || ""));
 
             setStatus("sending");
             setErrorMsg("");
+
             try {
               const res = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
+                headers: {
+                  Accept: "application/json",
+                },
                 body: payload,
               });
-              const json = await res.json();
-              if (json.success) {
+
+              const responseText = await res.text();
+              let json: any = null;
+
+              try {
+                json = JSON.parse(responseText);
+              } catch {
+                // Mantém o texto bruto para exibir um erro útil.
+              }
+
+              const apiMessage =
+                json?.message ||
+                json?.body?.message ||
+                responseText ||
+                `Erro HTTP ${res.status}`;
+
+              if (res.ok && json?.success === true) {
                 setStatus("success");
                 form.reset();
               } else {
+                console.error("Web3Forms:", {
+                  status: res.status,
+                  response: json || responseText,
+                });
                 setStatus("error");
-                setErrorMsg(json.message || "Falha no envio.");
+                setErrorMsg(`Web3Forms: ${apiMessage}`);
               }
             } catch (err) {
+              console.error("Erro ao enviar para o Web3Forms:", err);
               setStatus("error");
-              setErrorMsg("Não foi possível enviar. Verifique sua conexão.");
+              setErrorMsg(
+                "Não foi possível conectar ao Web3Forms. Verifique a conexão e tente novamente."
+              );
             }
           }}
           className="space-y-10"
