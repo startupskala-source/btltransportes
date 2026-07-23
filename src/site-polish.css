@@ -1,10 +1,16 @@
 /* BTL Transportes — ajuste exclusivo do rodapé.
-   O restante do site permanece com o layout e os efeitos originais. */
+   Mantém todo o restante do site com o layout e os efeitos originais. */
 
 footer {
-  background: #7C0F24 !important;
+  background-color: #7C0F24 !important;
 }
 
+/* Camada escura que fica sobre o vídeo do rodapé */
+footer > div.absolute.inset-0.z-10 {
+  background-color: #7C0F24 !important;
+}
+
+/* Linha divisória inferior */
 footer > div:nth-of-type(2) {
   border-color: rgba(255, 255, 255, 0.14);
 }
